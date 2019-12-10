@@ -384,7 +384,14 @@ public class MakeUpdatesMojo extends AbstractGetdownMojo {
 			}
 			if (jvmargs != null) {
 				for (String s : jvmargs) {
-					writer.println(String.format("jvmarg = %s", s));
+				    String[] args = s.split("#");
+                    if (args.length > 1) {
+                        for (String arg : args) {
+                            writer.println(String.format("jvmarg = %s", arg));
+                        }
+                    } else {
+				        writer.println(String.format("jvmarg = %s", s));
+				    }
 				}
 			}
 
